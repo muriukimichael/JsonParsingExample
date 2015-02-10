@@ -1,15 +1,21 @@
 package com.pixelimpressions.www.jsonparsingexample;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.ListFragment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.ListView;
+
+import org.json.JSONArray;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -20,7 +26,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
+                    .add(R.id.container, new ContactListFragment())
                     .commit();
         }
     }
@@ -51,15 +57,48 @@ public class MainActivity extends ActionBarActivity {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
+    public static class ContactListFragment extends ListFragment {
 
-        public PlaceholderFragment() {
+        private ProgressDialog pDialog;
+
+        //Url to get the JSON
+        private static String url = "http://api.androidhive.info/contacts/";
+
+        //JSON node names
+        private static final String TAG_CONTACTS = "contacts";
+        private static final String TAG_ID = "id";
+        private static final String TAG_NAME = "name";
+        private static final String TAG_EMAIL = "email";
+        private static final String TAG_ADDRESS = "address";
+        private static final String TAG_GENDER = "gender";
+        private static final String TAG_PHONE = "phone";
+        private static final String TAG_PHONE_MOBILE = "mobile";
+        private static final String TAG_PHONE_HOME = "home";
+        private static final String TAG_PHONE_OFFICE = "office";
+
+        //contacts JSONArray
+        JSONArray contacts = null;
+
+        //Hashmap for Listview
+        ArrayList<HashMap<String, String>> contactList;
+
+        public ContactListFragment() {
+
+        }
+
+        @Override
+        public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+            super.onActivityCreated(savedInstanceState);
+            contactList = new ArrayList<HashMap<String, String>>();
+            ListView lv = getListView();
+
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+
             return rootView;
         }
     }
