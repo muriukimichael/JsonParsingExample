@@ -10,14 +10,12 @@
         android:id="@+id/name_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Michael Muriuki Waihura"
         android:textAppearance="?android:textAppearanceLarge" />
 
     <TextView
         android:id="@+id/email_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="muriukimichael@gmail.com"
         android:layout_marginTop="2dp"
         android:textAppearance="?android:textAppearanceMedium" />
 
@@ -25,7 +23,6 @@
         android:id="@+id/mobile_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="+254721945860"
         android:layout_marginTop="3dp"
         android:textAppearance="?android:textAppearanceSmall" />
 
