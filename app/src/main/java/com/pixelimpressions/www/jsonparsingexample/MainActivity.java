@@ -125,7 +125,8 @@ public class MainActivity extends ActionBarActivity {
                 ServiceHandler serviceHandler = new ServiceHandler();
 
                 //make the request to url and get the response
-                String jsonStr = serviceHandler.makeServiceCall(url, ServiceHandler.GET);
+                //String jsonStr = serviceHandler.makeServiceCall(url, ServiceHandler.GET);
+                String jsonStr = serviceHandler.makeGetServiceCall(url);
                 Log.d("Response: ", "> " + jsonStr);
                 if (jsonStr != null) {
                     try {
